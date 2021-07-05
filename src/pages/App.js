@@ -5,6 +5,7 @@ const Pokemon = () => {
   const [pokemonList, setPokemonList] = useState();
   const [pokemon, setPokemon] = useState("");
   const [abilities, setAbilities] = useState();
+  const [isActive, setActive] = useState(false);
 
   useEffect(() => {
     const getPokemon = async () => {
@@ -34,6 +35,7 @@ const Pokemon = () => {
   const handleClick = (name) => {
     setPokemon(name);
     console.log(name);
+    setActive(!isActive);
   };
 
   return (
@@ -41,19 +43,21 @@ const Pokemon = () => {
       <h1>Details {pokemon}</h1>
       <h3>Abilities</h3>
       <ul>
-        {abilities?.map((pokemon) => (
-          <li key={pokemon.ability.name}>{pokemon.ability.name}</li>
+        {abilities?.map((poke) => (
+          <li key={poke.ability.name}>{poke.ability.name}</li>
         ))}
       </ul>
       <h3>List Pokemon</h3>
       <ul className="list-group">
-        {pokemonList?.map((pokemon) => (
+        {pokemonList?.map((poke) => (
           <li
-            className="list-group-item list-group-item-action"
-            onClick={() => handleClick(pokemon.name)}
-            key={pokemon.name}
+            className={`list-group-item list-group-item-action ${
+              pokemon === poke.name ? "active" : false
+            }`}
+            onClick={() => handleClick(poke.name)}
+            key={poke.name}
           >
-            {pokemon.name}
+            {poke.name}
           </li>
         ))}
       </ul>
@@ -72,7 +76,7 @@ function App() {
           <Link to="/calculator">Calculator</Link>
         </li>
       </ul>
-      <Pokemon />;
+      <Pokemon />
     </div>
   );
 }
