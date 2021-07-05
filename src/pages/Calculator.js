@@ -19,33 +19,32 @@ const Hitung = () => {
       let res = 0;
       let a = parseInt(num1);
       let b = parseInt(num2);
-      res = a + b;
-      // switch (operator) {
-      //   default:
-      //     res = a + b;
-      //     break;
-      //   case "-":
-      //     res = a - b;
-      //     break;
-      //   case "*":
-      //     res = a * b;
-      //     break;
-      //   case "/":
-      //     res = a / b;
-      //     break;
-      // }
-      // console.log(res);
+
+      switch (operator) {
+        default:
+          res = a + b;
+          break;
+        case "-":
+          res = a - b;
+          break;
+        case "*":
+          res = a * b;
+          break;
+        case "/":
+          res = a / b;
+          break;
+      }
+      console.log(res);
       setHasil(res);
     };
     getResult();
-  }, [hasil]);
+  }, [num1, num2, operator]);
 
   console.log(hasil);
 
   const handleChange = (e) => {
     if (e.target) {
       setOperator(e.target.value);
-      // setHasil(hasil);
     }
   };
 
@@ -55,7 +54,6 @@ const Hitung = () => {
     } else if (e.target.id === "num2") {
       setNum2(e.target.value);
     }
-    // setHasil(hasil);
   };
 
   return (
